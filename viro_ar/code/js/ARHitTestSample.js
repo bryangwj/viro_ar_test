@@ -41,7 +41,7 @@ var ARHitTestSample = createReactClass({
   render: function() {
     return (
       <ViroARScene ref="arscene" onTrackingUpdated={this._onTrackInit}>
-          <ViroAmbientLight color="#ffffff" intensity={200}/>
+          <ViroAmbientLight color="#FFFFFF" intensity = {200} />
           {this._getModel()}
       </ViroARScene>
     );

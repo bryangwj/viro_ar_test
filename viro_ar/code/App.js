@@ -18,11 +18,13 @@ import renderIf from './js/helpers/renderIf';
 var InitialARScene = require('./js/ARHitTestSample');
 
 // Array of 3d models that we use in this sample. This app switches between this these models.
-var objArray = [
-  require('./js/res/coffee_mug/object_coffee_mug.vrx'),
-  require('./js/res/object_flowers/object_flowers.vrx'),
-  require('./js/res/emoji_smile/emoji_smile.vrx')];
+var objArray = [require('./js/res/Helicoperwa/Helicoperwa.vrx'),
+  require('./js/res/HUMVEE/HUMVEE_M242.vrx')];
 
+/*var mtlArray = [require('./js/res/camcopters100/camcopters100.mtl'),
+  require('./js/res/Helicoperwa/Helicoperwa.mtl'),
+  require('./js/res/HUMVEE/HUMVEE_M242.mtl')];
+*/
 export default class ViroSample extends Component {
   constructor() {
     super();
@@ -33,6 +35,8 @@ export default class ViroSample extends Component {
     this._onDisplayDialog = this._onDisplayDialog.bind(this);
     this._onLoadStart = this._onLoadStart.bind(this);
     this._onLoadEnd = this._onLoadEnd.bind(this);
+
+    //this._mtlSource = this._mtlSource.bind(this);
 
     this.state = {
       viroAppProps: {displayObject:false, objectSource:objArray[0], yOffset:0, _onLoadEnd: this._onLoadEnd, _onLoadStart: this._onLoadStart, _onTrackingInit:this._onTrackingInit},
@@ -84,11 +88,11 @@ export default class ViroSample extends Component {
   _renderTrackingText() {
     if(this.state.trackingInitialized) {
       return (<View style={{position: 'absolute', backgroundColor:"#ffffff22", left: 30, right: 30, top: 30, alignItems: 'center'}}>
-        <Text style={{fontSize:12, color:"#ffffff"}}>Tracking initialized.</Text>
+        <Text style={{fontSize:12, color:"#ffffff"}}>Tracking</Text>
       </View>);
     } else {
       return (<View style={{position: 'absolute', backgroundColor:"#ffffff22", left: 30, right: 30, top:30, alignItems: 'center'}}>
-        <Text style={{fontSize:12, color:"#ffffff"}}>Waiting for tracking to initialize.</Text>
+        <Text style={{fontSize:12, color:"#ffffff"}}>Waiting</Text>
         </View>);
     }
   }
@@ -101,15 +105,20 @@ export default class ViroSample extends Component {
 
   _onDisplayDialog() {
     Alert.alert(
-    'Choose an object',
-    'Select an object to place in the world!',
+    'Choose an object:',
     [
-      {text: 'Coffee Mug', onPress: () => this._onShowObject(0, "coffee_mug", 0)},
-      {text: 'Flowers', onPress: () => this._onShowObject(1, "flowers", .290760)},
-      {text: 'Smile Emoji', onPress: () => this._onShowObject(2, "smile_emoji", .497823)},
+      {text: 'UH-60', onPress: () => this._onShowObject(0, "UH-60", 0)},
+      {text: 'HUMVEE', onPress: () => this._onShowObject(1, "HUMVEE", 0)},
     ],
     );
   }
+
+ /* _mtlSource(index){
+    return mtlArray[index];
+
+  }
+*/
+  
 
   _onShowObject(objIndex, objUniqueName, yOffset) {
     this.setState({
